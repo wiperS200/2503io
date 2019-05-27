@@ -1,14 +1,19 @@
 require 'discordrb'
 
 idAndToken = []
-File.open("CLIENT_ID_AND_TOKEN", mode = "rt") {|f|
-  idAndToken = f.readlines
-}
+i = 0
+File.open("CLIENT_ID_AND_TOKEN", mode = "rt") do |f|
+  f.each_line do |line|
+    idAndToken[i] = line.chomp
+    i += 1
+ end
+end
 
-bot = Discordrb::Commands::CommandBot.new (
-  token: ,
-  client_id: ,
-  prefix:'/',
+p idAndToken
+bot = Discordrb::Commands::CommandBot.new(
+  client_id: idAndToken[0].to_i,
+  token: idAndToken[1],
+  prefix: '/',
 )
 
 bot.command :hello do |event|
