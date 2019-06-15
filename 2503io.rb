@@ -11,13 +11,17 @@ end
 
 p idAndToken
 bot = Discordrb::Commands::CommandBot.new(
-  client_id: idAndToken[0].to_i,
+  client_id: idAndToken[0],
   token: idAndToken[1],
   prefix: '/',
 )
 
-bot.command :hello do |event|
-  event.send_message("hello,#{event.user.name}.")
+bot.command :open do |event|
+  event.send_message("#{event.user.name} opened 2503.")
+end
+
+bot.command :close do |event|
+  event.send_message("#{event.user.name} closed 2503.")
 end
 
 bot.run
