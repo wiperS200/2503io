@@ -9,19 +9,20 @@ File.open("CLIENT_ID_AND_TOKEN", mode = "rt") do |f|
  end
 end
 
-p idAndToken
 bot = Discordrb::Commands::CommandBot.new(
   client_id: idAndToken[0],
   token: idAndToken[1],
-  prefix: '/',
+  prefix: '', # なくてもいけるっぽい
 )
 
-bot.command :open do |event|
+bot.command :あけ do |event| # ひらがなでいけた
   event.send_message("#{event.user.name} opened 2503.")
 end
 
-bot.command :close do |event|
-  event.send_message("#{event.user.name} closed 2503.")
+bot.command :しめ do |event|
+  event.send_message("#{event.user.name} が鍵を閉めました")
+  sleep 180
+  event.send_message("#{event.user.mention} 返しましたか？")
 end
 
 bot.run
